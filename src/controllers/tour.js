@@ -1,9 +1,12 @@
 const Tour = require('../models/tour');
 const { HttpStatusCode, Status } = require('../enums');
+const { getFilteredQuery } = require('./util');
 
 const getAllTours = async (req, res) => {
   try {
-    const tours = await Tour.find();
+    const filteredQuery = getFilteredQuery(req.query);
+    const query = Tour.find(filteredQuery);
+    const tours = await query;
 
     res.status(HttpStatusCode.Ok).json({
       status: Status.Success,
