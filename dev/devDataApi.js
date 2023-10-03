@@ -1,9 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
-import Tour from '../src/models/tour.js';
+const fs = require('fs');
+const path = require('path');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const Tour = require('../src/models/tour.js');
 
 dotenv.config({ path: './config.env' });
 
@@ -21,17 +20,10 @@ mongoose
   .then(() => console.log('MongoDB connection successful!'));
 
 const tours = JSON.parse(
-  fs.readFileSync(
-    path.join(
-      // eslint-disable-next-line
-      path.dirname(fileURLToPath(import.meta.url)),
-      './toursSimple.json',
-    ),
-    'utf-8',
-  ),
+  fs.readFileSync(path.join(__dirname, './toursSimple.json'), 'utf-8'),
 );
 
-export const importDevDataIntoDb = async () => {
+const importDevDataIntoDb = async () => {
   try {
     await Tour.create(tours);
     console.log('Data sucessfully loaded!');
@@ -40,7 +32,7 @@ export const importDevDataIntoDb = async () => {
   }
 };
 
-export const flushDevDataFromDb = async () => {
+const flushDevDataFromDb = async () => {
   try {
     await Tour.deleteMany();
     console.log('Data sucessfully flushed!');
@@ -48,3 +40,5 @@ export const flushDevDataFromDb = async () => {
     console.log(err);
   }
 };
+
+module.exports = { importDevDataIntoDb, flushDevDataFromDb };

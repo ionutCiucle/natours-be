@@ -1,4 +1,4 @@
-export const checkId = (req, res, next, val) => {
+const checkId = (req, res, next, val) => {
   if (req.params.id % 3 === 0) {
     res.status(400).json({ status: 'fail', message: 'Invalid ID' });
   } else {
@@ -6,7 +6,7 @@ export const checkId = (req, res, next, val) => {
   }
 };
 
-export const checkBody = (req, res, next) => {
+const checkBody = (req, res, next) => {
   const { name, price } = req.body;
 
   if (name === undefined || price === undefined) {
@@ -15,3 +15,5 @@ export const checkBody = (req, res, next) => {
     next();
   }
 };
+
+module.exports = { checkId, checkBody };

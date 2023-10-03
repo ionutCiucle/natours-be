@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const tourSchema = new mongoose.Schema({
   name: {
@@ -53,6 +53,4 @@ const tourSchema = new mongoose.Schema({
   startDates: [Date],
 });
 
-const Tour = mongoose.model('Tour', tourSchema);
-
-export default Tour;
+module.exports = mongoose.model('Tour', tourSchema);
