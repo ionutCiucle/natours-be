@@ -3,7 +3,7 @@ import path from 'path';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
-import Tour from '../models/tour.js';
+import Tour from '../src/models/tour.js';
 
 dotenv.config({ path: './config.env' });
 

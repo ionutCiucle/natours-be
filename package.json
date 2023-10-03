@@ -1,14 +1,14 @@
 {
-  "name": "natours",
+  "name": "natours-be",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "nodemon server.js",
     "test": "test",
-    "importDevData": "node src/dev/import.js",
-    "flushDevData": "node src/dev/flush.js"
+    "importDevData": "node dev/import.js",
+    "flushDevData": "node dev/flush.js"
   },
   "author": "",
   "license": "ISC",
