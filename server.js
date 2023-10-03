@@ -1,8 +1,10 @@
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import app from './src/app.js';
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 
+// We need to set the env variables before importing "app"
 dotenv.config({ path: './config.env' });
+
+const app = require('./src/app.js');
 
 const connectionString = process.env.DATABASE.replace(
   '<PASSWORD>',

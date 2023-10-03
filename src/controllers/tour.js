@@ -1,7 +1,7 @@
-import Tour from '../models/tour.js';
-import { HttpStatusCode, Status } from '../enums.js';
+const Tour = require('../models/tour');
+const { HttpStatusCode, Status } = require('../enums');
 
-export const getAllTours = async (req, res) => {
+const getAllTours = async (req, res) => {
   try {
     const tours = await Tour.find();
 
@@ -19,7 +19,7 @@ export const getAllTours = async (req, res) => {
   }
 };
 
-export const getTour = async (req, res) => {
+const getTour = async (req, res) => {
   try {
     const tour = await Tour.findById(req.params.id);
 
@@ -37,7 +37,7 @@ export const getTour = async (req, res) => {
   }
 };
 
-export const createTour = async (req, res) => {
+const createTour = async (req, res) => {
   try {
     const newTour = await Tour.create(req.body);
 
@@ -62,7 +62,7 @@ export const createTour = async (req, res) => {
   }
 };
 
-export const updateTour = async (req, res) => {
+const updateTour = async (req, res) => {
   try {
     const updatedTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -83,7 +83,7 @@ export const updateTour = async (req, res) => {
   }
 };
 
-export const deleteTour = async (req, res) => {
+const deleteTour = async (req, res) => {
   try {
     await Tour.findByIdAndDelete(req.params.id);
 
@@ -96,4 +96,12 @@ export const deleteTour = async (req, res) => {
       message: err,
     });
   }
+};
+
+module.exports = {
+  createTour,
+  getAllTours,
+  getTour,
+  updateTour,
+  deleteTour,
 };

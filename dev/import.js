@@ -1,4 +1,4 @@
-import { importDevDataIntoDb } from './devDataApi.js';
+const { importDevDataIntoDb } = require('./devDataApi.js');
 
 importDevDataIntoDb();
 process.exit(0); // eslint-disable-line

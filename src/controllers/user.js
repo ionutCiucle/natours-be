@@ -1,19 +1,27 @@
-export const getAllUsers = (req, res) => {
+const getAllUsers = (req, res) => {
   res.status(500).send('Route not yet implemented');
 };
 
-export const createUser = (req, res) => {
+const createUser = (req, res) => {
   res.status(500).send('Route not yet implemented');
 };
 
-export const getUser = (req, res) => {
+const getUser = (req, res) => {
   res.status(500).send('Route not yet implemented');
 };
 
-export const updateUser = (req, res) => {
+const updateUser = (req, res) => {
   res.status(500).send('Route not yet implemented');
 };
 
-export const deleteUser = (req, res) => {
+const deleteUser = (req, res) => {
   res.status(500).send('Route not yet implemented');
+};
+
+module.exports = {
+  getAllUsers,
+  createUser,
+  getUser,
+  updateUser,
+  deleteUser,
 };

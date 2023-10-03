@@ -1,12 +1,12 @@
-import express from 'express';
-import {
+const express = require('express');
+const {
   getAllTours,
   createTour,
   getTour,
   updateTour,
   deleteTour,
-} from '../controllers/tour.js';
-// import {  checkId, checkBody } from './middleware.js';
+} = require('../controllers/tour');
+// const {  checkId, checkBody } = require( './middleware.js';
 
 const router = express.Router();
 
@@ -16,4 +16,4 @@ const router = express.Router();
 router.route('/').get(getAllTours).post(createTour);
 router.route('/:id').get(getTour).patch(updateTour).delete(deleteTour);
 
-export default router;
+module.exports = router;

@@ -1,4 +1,4 @@
-export const HttpStatusCode = {
+const HttpStatusCode = {
   Ok: 200,
   Created: 201,
   NoContent: 204,
@@ -7,7 +7,9 @@ export const HttpStatusCode = {
   InternalServerError: 500,
 };
 
-export const Status = {
+const Status = {
   Success: 'success',
   Failure: 'failure',
 };
+
+module.exports = { HttpStatusCode, Status };
