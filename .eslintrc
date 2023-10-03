@@ -6,5 +6,8 @@
     "no-console": "warn",
     "import/extensions": "off",
     "no-unused-vars": ["error", { "argsIgnorePattern": "req|res|next|val" }]
+  },
+  "env": {
+    "node": true
   }
 }
