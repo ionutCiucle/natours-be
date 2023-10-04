@@ -11,6 +11,8 @@ const getAllTours = async (req, res) => {
       const mongoSortQuery = getMongoSortQuery(req.query.sort);
 
       query = query.sort(mongoSortQuery);
+    } else {
+      query.sort('-createdAt');
     }
 
     const tours = await query;
