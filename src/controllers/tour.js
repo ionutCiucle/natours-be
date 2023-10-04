@@ -1,6 +1,6 @@
 const Tour = require('../models/tour');
 const { HttpStatusCode, Status } = require('../enums');
-const APIFeatures = require('./APIFeatures');
+const APIFeatures = require('../APIFeatures');
 
 const getAllTours = async (req, res) => {
   try {
