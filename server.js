@@ -6,11 +6,6 @@ dotenv.config({ path: './config.env' });
 
 const app = require('./src/app.js');
 
-// const connectionString = process.env.DATABASE.replace(
-//   '<PASSWORD>',
-//   process.env.DATABASE_PASSWORD,
-// );x
-
 const dockerConnectionString = process.env.DOCKER_DATABASE;
 
 mongoose
