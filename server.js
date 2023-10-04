@@ -6,18 +6,20 @@ dotenv.config({ path: './config.env' });
 
 const app = require('./src/app.js');
 
-const connectionString = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD,
-);
+// const connectionString = process.env.DATABASE.replace(
+//   '<PASSWORD>',
+//   process.env.DATABASE_PASSWORD,
+// );x
+
+const dockerConnectionString = process.env.DOCKER_DATABASE;
 
 mongoose
-  .connect(connectionString, {
+  .connect(dockerConnectionString, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then(() => console.log('MongoDB connection successful!'));
+  .then(() => console.log('*** Connection to MongoDB Successful!'));
 
 app.listen(process.env.PORT, () => {
   console.log(

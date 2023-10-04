@@ -1,9 +1,16 @@
 const Tour = require('../models/tour');
 const { HttpStatusCode, Status } = require('../enums');
+const APIFeatures = require('../APIFeatures');
 
 const getAllTours = async (req, res) => {
   try {
-    const tours = await Tour.find();
+    const features = new APIFeatures(Tour.find(), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+
+    const tours = await features.query;
 
     res.status(HttpStatusCode.Ok).json({
       status: Status.Success,

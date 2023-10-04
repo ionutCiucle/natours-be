@@ -6,13 +6,12 @@ const {
   updateTour,
   deleteTour,
 } = require('../controllers/tour');
-// const {  checkId, checkBody } = require( './middleware.js';
+const { aliasTopTours } = require('./middleware');
 
 const router = express.Router();
 
-// router.param('id', checkId);
+router.route('/top-5-cheap').get(aliasTopTours, getAllTours);
 
-// router.route('/').get(getAllTours).post(checkBody, createTour);
 router.route('/').get(getAllTours).post(createTour);
 router.route('/:id').get(getTour).patch(updateTour).delete(deleteTour);
 

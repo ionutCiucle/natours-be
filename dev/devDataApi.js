@@ -6,13 +6,13 @@ const Tour = require('../src/models/tour.js');
 
 dotenv.config({ path: './config.env' });
 
-const connectionString = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD,
-);
+// const connectionString = process.env.DATABASE.replace(
+//   '<PASSWORD>',
+//   process.env.DATABASE_PASSWORD,
+// );
 
 mongoose
-  .connect(connectionString, {
+  .connect(process.env.DOCKER_DATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
@@ -24,6 +24,7 @@ const tours = JSON.parse(
 );
 
 const importDevDataIntoDb = async () => {
+  console.log(Tour);
   try {
     await Tour.create(tours);
     console.log('Data sucessfully loaded!');
