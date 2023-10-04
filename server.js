@@ -11,13 +11,15 @@ const connectionString = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD,
 );
 
+const dockerConnectionString = process.env.DOCKER_DATABASE;
+
 mongoose
-  .connect(connectionString, {
+  .connect(dockerConnectionString, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then(() => console.log('MongoDB connection successful!'));
+  .then(() => console.log('*** Connection to MongoDB Successful!'));
 
 app.listen(process.env.PORT, () => {
   console.log(

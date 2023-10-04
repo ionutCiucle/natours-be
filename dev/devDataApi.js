@@ -6,13 +6,15 @@ const Tour = require('../src/models/tour.js');
 
 dotenv.config({ path: './config.env' });
 
-const connectionString = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD,
-);
+// const connectionString = process.env.DATABASE.replace(
+//   '<PASSWORD>',
+//   process.env.DATABASE_PASSWORD,
+// );
+
+console.log('********', process.env.DOCKER_DATABASE);
 
 mongoose
-  .connect(connectionString, {
+  .connect(process.env.DOCKER_DATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,

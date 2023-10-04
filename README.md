@@ -1,18 +1,22 @@
 # natours-be
 
-### Steps to run the app
+### Add a MongoDB Server
 
-#### Add the config.env file
+#### Install Docker and run a container using a MongoDB image
 
-The app needs a `config.env` file in the app root, having the following structure:
+`docker container run --name <yourContainerName> --publish 27017:27017 -d mongo`
 
-```
-NODE_ENV=development
-PORT=<somePortNumber>
-DATABASE=<mongoDbConnectionString>
-DATABASE_USER=<mongoDbUserName>
-DATABASE_PASSWORD=<mongoDbPassword>
-```
+#### Create the `natours` Database from the Docker Container (can also be done using the Docker desktop app, by accessing the Exec tab in the Container UI)
+
+##### Access the container using `bash`
+
+`docker container exec -it <yourContainerName> bash`
+
+##### Use the mongo shell `mongosh` to create the `natours` database
+
+`use natours`
+
+### Install node dependencies and start nodemon
 
 #### Install node modules
 

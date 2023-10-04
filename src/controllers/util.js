@@ -27,15 +27,7 @@ const getMongoFilterQuery = (expressQuery) => {
   return filteredQuery;
 };
 
-/** 
- * Replaces commas in Express sort queries with spaces. 
- * 
- * For example, when called with `sort=-price,ratingsAverage` 
- * it will return `sort=-price ratingsAverage`
-   @param {string} expressSortQuery
-   @returns {string} The MongoDB-enabled query (containing spaces instead of commas)
-*/
-const getMongoSortQuery = (expressSortQuery) =>
+const replaceCommaWithSpace = (expressSortQuery) =>
   expressSortQuery.split(',').join(' ');
 
-module.exports = { getMongoFilterQuery, getMongoSortQuery };
+module.exports = { getMongoFilterQuery, replaceCommaWithSpace };
