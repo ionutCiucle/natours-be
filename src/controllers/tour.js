@@ -1,11 +1,18 @@
 const Tour = require('../models/tour');
 const { HttpStatusCode, Status } = require('../enums');
-const { getFilteredQuery } = require('./util');
+const { getMongoFilterQuery, getMongoSortQuery } = require('./util');
 
 const getAllTours = async (req, res) => {
   try {
-    const filteredQuery = getFilteredQuery(req.query);
-    const query = Tour.find(filteredQuery);
+    const filteredExpressQuery = getMongoFilterQuery(req.query);
+    let query = Tour.find(filteredExpressQuery);
+
+    if (req.query.sort) {
+      const mongoSortQuery = getMongoSortQuery(req.query.sort);
+
+      query = query.sort(mongoSortQuery);
+    }
+
     const tours = await query;
 
     res.status(HttpStatusCode.Ok).json({
