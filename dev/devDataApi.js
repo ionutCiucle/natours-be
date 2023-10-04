@@ -11,8 +11,6 @@ dotenv.config({ path: './config.env' });
 //   process.env.DATABASE_PASSWORD,
 // );
 
-console.log('********', process.env.DOCKER_DATABASE);
-
 mongoose
   .connect(process.env.DOCKER_DATABASE, {
     useNewUrlParser: true,
@@ -26,6 +24,7 @@ const tours = JSON.parse(
 );
 
 const importDevDataIntoDb = async () => {
+  console.log(Tour);
   try {
     await Tour.create(tours);
     console.log('Data sucessfully loaded!');

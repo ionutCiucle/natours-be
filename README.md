@@ -12,7 +12,11 @@
 
 `docker container exec -it <yourContainerName> bash`
 
-##### Use the mongo shell `mongosh` to create the `natours` database
+##### Use the mongo shell `mongosh`
+
+`mongosh`
+
+##### Create the `natours` database
 
 `use natours`
 

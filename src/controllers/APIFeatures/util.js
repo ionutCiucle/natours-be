@@ -1,7 +1,7 @@
 const excludedFields = ['page', 'sort', 'limit', 'fields'];
 
-const convertOperatorsToMongoSyntax = (query) => {
-  const textQuery = JSON.stringify(query);
+const convertOperatorsToMongoSyntax = (queryString) => {
+  const textQuery = JSON.stringify(queryString);
   const mongoTextQuery = textQuery.replace(
     /\b(gte|gt|lte|lt)\b/g,
     (match) => `$${match}`,
@@ -14,11 +14,11 @@ const convertOperatorsToMongoSyntax = (query) => {
 /**
  * Filters out excluded fields (page, sort, limit, fields) from the Express query and replaces `gte`,
  * `gt`, `lte`, `lt` query operators with MongoDB equivalents - `$lte`, `$gt` and so on.
- * @param {string} expressQuery
+ * @param {string} queryString
  * @returns {string}
  */
-const getMongoFilterQuery = (expressQuery) => {
-  const mongoQuery = convertOperatorsToMongoSyntax(expressQuery);
+const getMongoFilterQuery = (queryString) => {
+  const mongoQuery = convertOperatorsToMongoSyntax(queryString);
 
   const filteredQuery = Object.keys(mongoQuery)
     .filter((field) => excludedFields.indexOf(field) === -1)

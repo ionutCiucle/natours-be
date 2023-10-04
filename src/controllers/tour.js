@@ -1,40 +1,16 @@
 const Tour = require('../models/tour');
 const { HttpStatusCode, Status } = require('../enums');
-const { getMongoFilterQuery, replaceCommaWithSpace } = require('./util');
+const APIFeatures = require('./APIFeatures');
 
 const getAllTours = async (req, res) => {
   try {
-    // Filter docs based on field values
-    const filteredExpressQuery = getMongoFilterQuery(req.query);
-    let query = Tour.find(filteredExpressQuery);
+    const features = new APIFeatures(Tour.find(), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
 
-    // Custom sort or default sort
-    if (req.query.sort) {
-      const mongoSortQuery = replaceCommaWithSpace(req.query.sort);
-
-      query = query.sort(mongoSortQuery);
-    } else {
-      query = query.sort('-createdAt');
-    }
-
-    // Select specific fields on the docs
-    if (req.query.fields) {
-      const fields = replaceCommaWithSpace(req.query.fields);
-
-      query = query.select(fields);
-    }
-
-    // Pagination
-    if (req.query.page && req.query.limit) {
-      const skippedDocs = +req.query.page * +req.query.limit;
-
-      query = query.skip(skippedDocs).limit(req.query.limit);
-    } else {
-      // Set default pagination
-      query = query.limit(20);
-    }
-
-    const tours = await query;
+    const tours = await features.query;
 
     res.status(HttpStatusCode.Ok).json({
       status: Status.Success,
